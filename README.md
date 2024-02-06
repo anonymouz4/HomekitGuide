@@ -3,8 +3,18 @@
 ## Getting Pairing Data from Keychain
 Step 1: Dump `com.apple.hap.pairing` keychain data from macos keychain
 
-Two Entries are important:
-### HomeKit Pairing Identity
+Follow [this guide](https://pvieito.com/2019/12/extract-homekit-pairing-keys)`.
+
+
+To list the signing identities use `security find-identity -v`. Then take the text (not the hexnumber) including the quotation marks and run `export CODESIGNKIT_DEFAULT_IDENTITY="<text>"`
+
+To show the keys, don't forget to add the `-v` to the swift run command.
+
+––––––––––––––––––––––––––––
+
+## Output
+
+#### 1. HomeKit Pairing Identity
 There might be multiple, so testing each might be necessary to find the correct one.
 ##### Account
 Format: XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
@@ -15,7 +25,7 @@ Format: XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
 This consists of the `<iOSDeviceLTPK>+<iOSDeviceLTSK>`
 > For usage with `hap-controller-node`: iOSDeviceLTSK=`<iOSDeviceLTSK><iOSDeviceLTPK>`
 
-### Paired HomeKit Accessory
+#### 2. Paired HomeKit Accessory
 ##### Account
 Format: XX:XX:XX:XX:XX:XX
 -> This is the AccessoryPairingID.
